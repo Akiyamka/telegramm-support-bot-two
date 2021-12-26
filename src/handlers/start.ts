@@ -4,8 +4,20 @@ import env from '../env';
 import { Env } from '../types';
 
 export function start(ctx: Context, config: Env) {
-  const commandsList = commands.map((command) => `/${command.commandName}: ${command.description}`).join('/n');
-  ctx.reply([env.GREETING_MESSAGE, `Available commands:${commandsList}`].join('/n'));
+  const commandsList = commands.map((command) => `/${command.commandName} - ${command.description}`).join('\n');
+  ctx.reply([env.GREETING_MESSAGE, `Доступные команды: \n${commandsList}`].join('\n'));
   const sender = ctx.message?.from;
-  ctx.api.sendMessage(config.TELEGRAM_SUPPORT_CHAT_ID, JSON.stringify(sender, null, 2));
+  if (sender) {
+    const senderType = sender.is_bot ? 'Бот' : 'Пользователь';
+    const senderName = `${sender.username} ` + sender.first_name ? `(${sender.first_name} ${sender.last_name})` : ''
+    ctx.api.sendMessage(
+      config.TELEGRAM_SUPPORT_CHAT_ID,
+      `${senderType} ${senderName} присоединился к чату (id: ${sender.id})`
+    );
+  } else {
+    ctx.api.sendMessage(
+      config.TELEGRAM_SUPPORT_CHAT_ID,
+      `Кто-то неизвестный присоединился к чату`
+    );
+  }
 }

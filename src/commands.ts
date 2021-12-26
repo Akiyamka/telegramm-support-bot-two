@@ -11,6 +11,11 @@ const commands: AvailableCommand[] = [
     commandName: 'start',
     handlerName: 'start',
     description: 'Show greetings message, and list of available commands'
+  },
+  {
+    commandName: 'info',
+    handlerName: 'info',
+    description: 'Show info about group where bot added'
   }
 ];
 
