@@ -5,6 +5,7 @@ const { errors, warnings } = await esbuild.build({
     entryPoints: ['src/webhook.ts'],
     outfile: 'build/webhook.js',
     bundle: true,
+    format: 'esm',
     platform: 'node',
     plugins: [
         envPlugin(),

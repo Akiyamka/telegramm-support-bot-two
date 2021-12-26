@@ -5,7 +5,14 @@ var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
-var __commonJS = (cb, mod) => function __require() {
+var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
+  get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
+}) : x)(function(x) {
+  if (typeof require !== "undefined")
+    return require.apply(this, arguments);
+  throw new Error('Dynamic require of "' + x + '" is not supported');
+});
+var __commonJS = (cb, mod) => function __require2() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var __export = (target, all) => {
@@ -111,7 +118,7 @@ var require_event_listener_count = __commonJS({
 var require_compat = __commonJS({
   "node_modules/depd/lib/compat/index.js"(exports2, module2) {
     "use strict";
-    var EventEmitter = require("events").EventEmitter;
+    var EventEmitter = __require("events").EventEmitter;
     lazyProperty(module2.exports, "callSiteToString", function callSiteToString2() {
       var limit = Error.stackTraceLimit;
       var obj = {};
@@ -157,7 +164,7 @@ var require_depd = __commonJS({
   "node_modules/depd/index.js"(exports, module) {
     var callSiteToString = require_compat().callSiteToString;
     var eventListenerCount = require_compat().eventListenerCount;
-    var relative = require("path").relative;
+    var relative = __require("path").relative;
     module.exports = depd;
     var basePath = process.cwd();
     function containsNamespace(str, namespace) {
@@ -821,7 +828,7 @@ var require_inherits_browser = __commonJS({
 var require_inherits = __commonJS({
   "node_modules/http-errors/node_modules/inherits/inherits.js"(exports2, module2) {
     try {
-      util = require("util");
+      util = __require("util");
       if (typeof util.inherits !== "function")
         throw "";
       module2.exports = util.inherits;
@@ -1294,8 +1301,8 @@ var require_browser = __commonJS({
 // node_modules/body-parser/node_modules/debug/src/node.js
 var require_node = __commonJS({
   "node_modules/body-parser/node_modules/debug/src/node.js"(exports2, module2) {
-    var tty = require("tty");
-    var util = require("util");
+    var tty = __require("tty");
+    var util = __require("util");
     exports2 = module2.exports = require_debug();
     exports2.init = init;
     exports2.log = log2;
@@ -1378,13 +1385,13 @@ var require_node = __commonJS({
           }
           break;
         case "FILE":
-          var fs = require("fs");
+          var fs = __require("fs");
           stream2 = new fs.SyncWriteStream(fd2, { autoClose: false });
           stream2._type = "fs";
           break;
         case "PIPE":
         case "TCP":
-          var net = require("net");
+          var net = __require("net");
           stream2 = new net.Socket({
             fd: fd2,
             readable: false,
@@ -1430,7 +1437,7 @@ var require_src = __commonJS({
 var require_safer = __commonJS({
   "node_modules/safer-buffer/safer.js"(exports2, module2) {
     "use strict";
-    var buffer = require("buffer");
+    var buffer = __require("buffer");
     var Buffer2 = buffer.Buffer;
     var safer = {};
     var key;
@@ -1574,7 +1581,7 @@ var require_internal = __commonJS({
     }
     InternalCodec.prototype.encoder = InternalEncoder;
     InternalCodec.prototype.decoder = InternalDecoder;
-    var StringDecoder = require("string_decoder").StringDecoder;
+    var StringDecoder = __require("string_decoder").StringDecoder;
     if (!StringDecoder.prototype.end)
       StringDecoder.prototype.end = function() {
       };
@@ -4429,8 +4436,8 @@ var require_encodings = __commonJS({
 var require_streams = __commonJS({
   "node_modules/iconv-lite/lib/streams.js"(exports2, module2) {
     "use strict";
-    var Buffer2 = require("buffer").Buffer;
-    var Transform = require("stream").Transform;
+    var Buffer2 = __require("buffer").Buffer;
+    var Transform = __require("stream").Transform;
     module2.exports = function(iconv) {
       iconv.encodeStream = function encodeStream(encoding, options) {
         return new IconvLiteEncoderStream(iconv.getEncoder(encoding, options), options);
@@ -4534,7 +4541,7 @@ var require_streams = __commonJS({
 var require_extend_node = __commonJS({
   "node_modules/iconv-lite/lib/extend-node.js"(exports2, module2) {
     "use strict";
-    var Buffer2 = require("buffer").Buffer;
+    var Buffer2 = __require("buffer").Buffer;
     module2.exports = function(iconv) {
       var original = void 0;
       iconv.supportsNodeEncodingsExtension = !(Buffer2.from || new Buffer2(0) instanceof Uint8Array);
@@ -4562,7 +4569,7 @@ var require_extend_node = __commonJS({
         Buffer2.isNativeEncoding = function(enc) {
           return enc && nodeNativeEncodings[enc.toLowerCase()];
         };
-        var SlowBuffer = require("buffer").SlowBuffer;
+        var SlowBuffer = __require("buffer").SlowBuffer;
         original.SlowBufferToString = SlowBuffer.prototype.toString;
         SlowBuffer.prototype.toString = function(encoding, start2, end) {
           encoding = String(encoding || "utf8").toLowerCase();
@@ -4666,7 +4673,7 @@ var require_extend_node = __commonJS({
           return length;
         };
         if (iconv.supportsStreams) {
-          var Readable = require("stream").Readable;
+          var Readable = __require("stream").Readable;
           original.ReadableSetEncoding = Readable.prototype.setEncoding;
           Readable.prototype.setEncoding = function setEncoding(enc, options) {
             this._readableState.decoder = iconv.getDecoder(enc, options);
@@ -4681,7 +4688,7 @@ var require_extend_node = __commonJS({
         if (!original)
           throw new Error("require('iconv-lite').undoExtendNodeEncodings(): Nothing to undo; extendNodeEncodings() is not called.");
         delete Buffer2.isNativeEncoding;
-        var SlowBuffer = require("buffer").SlowBuffer;
+        var SlowBuffer = __require("buffer").SlowBuffer;
         SlowBuffer.prototype.toString = original.SlowBufferToString;
         SlowBuffer.prototype.write = original.SlowBufferWrite;
         Buffer2.isEncoding = original.BufferIsEncoding;
@@ -4689,7 +4696,7 @@ var require_extend_node = __commonJS({
         Buffer2.prototype.toString = original.BufferToString;
         Buffer2.prototype.write = original.BufferWrite;
         if (iconv.supportsStreams) {
-          var Readable = require("stream").Readable;
+          var Readable = __require("stream").Readable;
           Readable.prototype.setEncoding = original.ReadableSetEncoding;
           delete Readable.prototype.collect;
         }
@@ -5163,7 +5170,7 @@ var require_read = __commonJS({
     var getBody = require_raw_body();
     var iconv = require_lib();
     var onFinished = require_on_finished();
-    var zlib = require("zlib");
+    var zlib = __require("zlib");
     module2.exports = read;
     function read(req, res, next, parse, debug, options) {
       var length;
@@ -13882,7 +13889,7 @@ var require_mime_types = __commonJS({
   "node_modules/mime-types/index.js"(exports2) {
     "use strict";
     var db = require_mime_db();
-    var extname = require("path").extname;
+    var extname = __require("path").extname;
     var EXTRACT_TYPE_REGEXP = /^\s*([^;\s]*)(?:;|\s|$)/;
     var TEXT_TYPE_REGEXP = /^text\//i;
     exports2.charset = charset;
@@ -15024,7 +15031,7 @@ var require_urlencoded = __commonJS({
           mod = require_lib2();
           break;
         case "querystring":
-          mod = require("querystring");
+          mod = __require("querystring");
           break;
       }
       parsers[name] = mod;
@@ -15456,8 +15463,8 @@ var require_browser2 = __commonJS({
 // node_modules/finalhandler/node_modules/debug/src/node.js
 var require_node2 = __commonJS({
   "node_modules/finalhandler/node_modules/debug/src/node.js"(exports2, module2) {
-    var tty = require("tty");
-    var util = require("util");
+    var tty = __require("tty");
+    var util = __require("util");
     exports2 = module2.exports = require_debug2();
     exports2.init = init;
     exports2.log = log2;
@@ -15540,13 +15547,13 @@ var require_node2 = __commonJS({
           }
           break;
         case "FILE":
-          var fs = require("fs");
+          var fs = __require("fs");
           stream2 = new fs.SyncWriteStream(fd2, { autoClose: false });
           stream2._type = "fs";
           break;
         case "PIPE":
         case "TCP":
-          var net = require("net");
+          var net = __require("net");
           stream2 = new net.Socket({
             fd: fd2,
             readable: false,
@@ -15653,7 +15660,7 @@ var require_escape_html = __commonJS({
 var require_parseurl = __commonJS({
   "node_modules/parseurl/index.js"(exports2, module2) {
     "use strict";
-    var url = require("url");
+    var url = __require("url");
     var parse = url.parse;
     var Url = url.Url;
     module2.exports = parseurl;
@@ -16164,8 +16171,8 @@ var require_browser3 = __commonJS({
 // node_modules/express/node_modules/debug/src/node.js
 var require_node3 = __commonJS({
   "node_modules/express/node_modules/debug/src/node.js"(exports2, module2) {
-    var tty = require("tty");
-    var util = require("util");
+    var tty = __require("tty");
+    var util = __require("util");
     exports2 = module2.exports = require_debug3();
     exports2.init = init;
     exports2.log = log2;
@@ -16248,13 +16255,13 @@ var require_node3 = __commonJS({
           }
           break;
         case "FILE":
-          var fs = require("fs");
+          var fs = __require("fs");
           stream2 = new fs.SyncWriteStream(fd2, { autoClose: false });
           stream2._type = "fs";
           break;
         case "PIPE":
         case "TCP":
-          var net = require("net");
+          var net = __require("net");
           stream2 = new net.Socket({
             fd: fd2,
             readable: false,
@@ -16507,7 +16514,7 @@ var require_layer = __commonJS({
 var require_methods = __commonJS({
   "node_modules/methods/index.js"(exports2, module2) {
     "use strict";
-    var http = require("http");
+    var http = __require("http");
     module2.exports = getCurrentNodeMethods() || getBasicNodeMethods();
     function getCurrentNodeMethods() {
       return http.METHODS && http.METHODS.map(function lowerCaseMethod(method) {
@@ -17101,8 +17108,8 @@ var require_view = __commonJS({
   "node_modules/express/lib/view.js"(exports2, module2) {
     "use strict";
     var debug = require_src3()("express:view");
-    var path = require("path");
-    var fs = require("fs");
+    var path = __require("path");
+    var fs = __require("fs");
     var dirname = path.dirname;
     var basename = path.basename;
     var extname = path.extname;
@@ -17126,7 +17133,7 @@ var require_view = __commonJS({
       if (!opts.engines[this.ext]) {
         var mod = this.ext.substr(1);
         debug('require "%s"', mod);
-        var fn2 = require(mod).__express;
+        var fn2 = __require(mod).__express;
         if (typeof fn2 !== "function") {
           throw new Error('Module "' + mod + '" does not provide a view engine.');
         }
@@ -17179,7 +17186,7 @@ var require_view = __commonJS({
 // node_modules/safe-buffer/index.js
 var require_safe_buffer = __commonJS({
   "node_modules/safe-buffer/index.js"(exports2, module2) {
-    var buffer = require("buffer");
+    var buffer = __require("buffer");
     var Buffer2 = buffer.Buffer;
     function copyProps(src, dst) {
       for (var key in src) {
@@ -17239,7 +17246,7 @@ var require_content_disposition = __commonJS({
     "use strict";
     module2.exports = contentDisposition;
     module2.exports.parse = parse;
-    var basename = require("path").basename;
+    var basename = __require("path").basename;
     var Buffer2 = require_safe_buffer().Buffer;
     var ENCODE_URL_ATTR_CHAR_REGEXP = /[\x00-\x20"'()*,/:;<=>?@[\\\]{}\x7f]/g;
     var HEX_ESCAPE_REGEXP = /%[0-9A-Fa-f]{2}/;
@@ -17690,8 +17697,8 @@ var require_browser4 = __commonJS({
 // node_modules/send/node_modules/debug/src/node.js
 var require_node4 = __commonJS({
   "node_modules/send/node_modules/debug/src/node.js"(exports2, module2) {
-    var tty = require("tty");
-    var util = require("util");
+    var tty = __require("tty");
+    var util = __require("util");
     exports2 = module2.exports = require_debug4();
     exports2.init = init;
     exports2.log = log2;
@@ -17774,13 +17781,13 @@ var require_node4 = __commonJS({
           }
           break;
         case "FILE":
-          var fs = require("fs");
+          var fs = __require("fs");
           stream2 = new fs.SyncWriteStream(fd2, { autoClose: false });
           stream2._type = "fs";
           break;
         case "PIPE":
         case "TCP":
-          var net = require("net");
+          var net = __require("net");
           stream2 = new net.Socket({
             fd: fd2,
             readable: false,
@@ -17826,8 +17833,8 @@ var require_src4 = __commonJS({
 var require_destroy = __commonJS({
   "node_modules/destroy/index.js"(exports2, module2) {
     "use strict";
-    var ReadStream = require("fs").ReadStream;
-    var Stream = require("stream");
+    var ReadStream = __require("fs").ReadStream;
+    var Stream = __require("stream");
     module2.exports = destroy;
     function destroy(stream) {
       if (stream instanceof ReadStream) {
@@ -17861,8 +17868,8 @@ var require_etag = __commonJS({
   "node_modules/etag/index.js"(exports2, module2) {
     "use strict";
     module2.exports = etag;
-    var crypto = require("crypto");
-    var Stats = require("fs").Stats;
+    var crypto = __require("crypto");
+    var Stats = __require("fs").Stats;
     var toString = Object.prototype.toString;
     function entitytag(entity) {
       if (entity.length === 0) {
@@ -17981,8 +17988,8 @@ var require_types = __commonJS({
 // node_modules/mime/mime.js
 var require_mime = __commonJS({
   "node_modules/mime/mime.js"(exports2, module2) {
-    var path = require("path");
-    var fs = require("fs");
+    var path = __require("path");
+    var fs = __require("fs");
     function Mime() {
       this.types = Object.create(null);
       this.extensions = Object.create(null);
@@ -18237,15 +18244,15 @@ var require_send = __commonJS({
     var escapeHtml = require_escape_html();
     var etag = require_etag();
     var fresh = require_fresh();
-    var fs = require("fs");
+    var fs = __require("fs");
     var mime = require_mime();
     var ms = require_ms5();
     var onFinished = require_on_finished();
     var parseRange = require_range_parser();
-    var path = require("path");
+    var path = __require("path");
     var statuses = require_statuses();
-    var Stream = require("stream");
-    var util = require("util");
+    var Stream = __require("stream");
+    var util = __require("util");
     var extname = path.extname;
     var join = path.join;
     var normalize = path.normalize;
@@ -19615,7 +19622,7 @@ var require_utils2 = __commonJS({
     var etag = require_etag();
     var proxyaddr = require_proxy_addr();
     var qs = require_lib2();
-    var querystring = require("querystring");
+    var querystring = __require("querystring");
     exports2.etag = createETagGenerator({ weak: false });
     exports2.wetag = createETagGenerator({ weak: true });
     exports2.isAbsolute = function(path) {
@@ -19750,14 +19757,14 @@ var require_application = __commonJS({
     var query = require_query();
     var debug = require_src3()("express:application");
     var View = require_view();
-    var http = require("http");
+    var http = __require("http");
     var compileETag = require_utils2().compileETag;
     var compileQueryParser = require_utils2().compileQueryParser;
     var compileTrust = require_utils2().compileTrust;
     var deprecate2 = require_depd()("express");
     var flatten = require_array_flatten();
     var merge = require_utils_merge();
-    var resolve = require("path").resolve;
+    var resolve = __require("path").resolve;
     var setPrototypeOf = require_setprototypeof();
     var slice = Array.prototype.slice;
     var app2 = exports2 = module2.exports = {};
@@ -20622,9 +20629,9 @@ var require_request = __commonJS({
     "use strict";
     var accepts = require_accepts();
     var deprecate2 = require_depd()("express");
-    var isIP = require("net").isIP;
+    var isIP = __require("net").isIP;
     var typeis = require_type_is();
-    var http = require("http");
+    var http = __require("http");
     var fresh = require_fresh();
     var parseRange = require_range_parser();
     var parse = require_parseurl();
@@ -20781,7 +20788,7 @@ var require_request = __commonJS({
 // node_modules/cookie-signature/index.js
 var require_cookie_signature = __commonJS({
   "node_modules/cookie-signature/index.js"(exports2) {
-    var crypto = require("crypto");
+    var crypto = __require("crypto");
     exports2.sign = function(val, secret) {
       if (typeof val != "string")
         throw new TypeError("Cookie value must be provided as a string.");
@@ -20995,10 +21002,10 @@ var require_response = __commonJS({
     var deprecate2 = require_depd()("express");
     var encodeUrl = require_encodeurl();
     var escapeHtml = require_escape_html();
-    var http = require("http");
+    var http = __require("http");
     var isAbsolute = require_utils2().isAbsolute;
     var onFinished = require_on_finished();
-    var path = require("path");
+    var path = __require("path");
     var statuses = require_statuses();
     var merge = require_utils_merge();
     var sign = require_cookie_signature().sign;
@@ -21517,9 +21524,9 @@ var require_serve_static = __commonJS({
     var encodeUrl = require_encodeurl();
     var escapeHtml = require_escape_html();
     var parseUrl = require_parseurl();
-    var resolve = require("path").resolve;
+    var resolve = __require("path").resolve;
     var send = require_send();
-    var url = require("url");
+    var url = __require("url");
     module2.exports = serveStatic;
     module2.exports.mime = send.mime;
     function serveStatic(root, options) {
@@ -21620,7 +21627,7 @@ var require_express = __commonJS({
   "node_modules/express/lib/express.js"(exports2, module2) {
     "use strict";
     var bodyParser = require_body_parser();
-    var EventEmitter = require("events").EventEmitter;
+    var EventEmitter = __require("events").EventEmitter;
     var mixin = require_merge_descriptors();
     var proto = require_application();
     var Route = require_route();
@@ -22960,7 +22967,7 @@ var require_has_flag = __commonJS({
 var require_supports_color = __commonJS({
   "node_modules/supports-color/index.js"(exports2, module2) {
     "use strict";
-    var os = require("os");
+    var os = __require("os");
     var hasFlag = require_has_flag();
     var env2 = process.env;
     var forceColor;
@@ -23054,8 +23061,8 @@ var require_supports_color = __commonJS({
 // node_modules/debug/src/node.js
 var require_node5 = __commonJS({
   "node_modules/debug/src/node.js"(exports2, module2) {
-    var tty = require("tty");
-    var util = require("util");
+    var tty = __require("tty");
+    var util = __require("util");
     exports2.init = init;
     exports2.log = log2;
     exports2.formatArgs = formatArgs;
@@ -23256,9 +23263,9 @@ var require_platform_node = __commonJS({
     var _a;
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.InputFile = exports2.inputFileData = exports2.baseFetchConfig = exports2.streamFile = exports2.itrToStream = exports2.debug = void 0;
-    var https_1 = require("https");
-    var path_1 = require("path");
-    var stream_1 = require("stream");
+    var https_1 = __require("https");
+    var path_1 = __require("path");
+    var stream_1 = __require("stream");
     __exportStar(require_types2(), exports2);
     var debug_1 = require_src5();
     Object.defineProperty(exports2, "debug", { enumerable: true, get: function() {
@@ -23266,7 +23273,7 @@ var require_platform_node = __commonJS({
     } });
     var itrToStream = (itr) => stream_1.Readable.from(itr, { objectMode: false });
     exports2.itrToStream = itrToStream;
-    var fs_1 = require("fs");
+    var fs_1 = __require("fs");
     Object.defineProperty(exports2, "streamFile", { enumerable: true, get: function() {
       return fs_1.createReadStream;
     } });
@@ -24212,7 +24219,7 @@ var require_mappingTable = __commonJS({
 var require_tr46 = __commonJS({
   "node_modules/tr46/index.js"(exports2, module2) {
     "use strict";
-    var punycode = require("punycode");
+    var punycode = __require("punycode");
     var mappingTable = require_mappingTable();
     var PROCESSING_OPTIONS = {
       TRANSITIONAL: 0,
@@ -24374,7 +24381,7 @@ var require_tr46 = __commonJS({
 var require_url_state_machine = __commonJS({
   "node_modules/whatwg-url/lib/url-state-machine.js"(exports2, module2) {
     "use strict";
-    var punycode = require("punycode");
+    var punycode = __require("punycode");
     var tr46 = require_tr46();
     var specialSchemes = {
       ftp: 21,
@@ -25804,12 +25811,12 @@ var require_lib4 = __commonJS({
     function _interopDefault(ex) {
       return ex && typeof ex === "object" && "default" in ex ? ex["default"] : ex;
     }
-    var Stream = _interopDefault(require("stream"));
-    var http = _interopDefault(require("http"));
-    var Url = _interopDefault(require("url"));
+    var Stream = _interopDefault(__require("stream"));
+    var http = _interopDefault(__require("http"));
+    var Url = _interopDefault(__require("url"));
     var whatwgUrl = _interopDefault(require_public_api());
-    var https = _interopDefault(require("https"));
-    var zlib = _interopDefault(require("zlib"));
+    var https = _interopDefault(__require("https"));
+    var zlib = _interopDefault(__require("zlib"));
     var Readable = Stream.Readable;
     var BUFFER = Symbol("buffer");
     var TYPE = Symbol("type");
@@ -25924,7 +25931,7 @@ var require_lib4 = __commonJS({
     FetchError.prototype.name = "FetchError";
     var convert;
     try {
-      convert = require("encoding").convert;
+      convert = __require("encoding").convert;
     } catch (e) {
     }
     var INTERNALS = Symbol("Body internals");
