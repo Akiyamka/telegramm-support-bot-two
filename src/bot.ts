@@ -29,12 +29,12 @@ bot.on('message', async (ctx) => {
   
       // Simple message
       if (ctx.message.text) {
-        ctx.api.editMessageText(env.TELEGRAM_SUPPORT_CHAT_ID, messageCopyId, `${ctx.message.text} \n #${ctx.senderChat?.id}`)
+        ctx.api.editMessageText(env.TELEGRAM_SUPPORT_CHAT_ID, messageCopyId, `#${ctx.from.first_name}:\n${ctx.message.text} \n #${ctx.from.id}`)
       }
   
       // Message with attachment
       else if (ctx.message.caption) {
-        ctx.api.editMessageText(env.TELEGRAM_SUPPORT_CHAT_ID, messageCopyId, `${ctx.message.caption} \n #${ctx.senderChat?.id}`)
+        ctx.api.editMessageText(env.TELEGRAM_SUPPORT_CHAT_ID, messageCopyId, `${ctx.message.caption} \n #${ctx.from.id}`)
       }
       
     } 
