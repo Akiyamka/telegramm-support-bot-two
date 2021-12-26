@@ -19,24 +19,28 @@ commands.forEach(({ commandName, handlerName }) => {
 // Handle other messages
 bot.on('message', async (ctx) => {
   const isMessageInBotChat = String(ctx.chat?.id) === env.TELEGRAM_SUPPORT_CHAT_ID;
-  if (isMessageInBotChat) {
-    // Telegram not allow to edit others messages
-    // So how we can add text message in that case - create copy and then edit it
-    const { message_id: messageCopyId } = await ctx.copyMessage(env.TELEGRAM_SUPPORT_CHAT_ID);
-
-    /* Add id and name as hashtag */
-
-    // Simple message
-    if (ctx.message.text) {
-      ctx.api.editMessageText(env.TELEGRAM_SUPPORT_CHAT_ID, messageCopyId, `${ctx.message.text} \n #${ctx.senderChat?.id}`)
-    }
-
-    // Message with attachment
-    else if (ctx.message.caption) {
-      ctx.api.editMessageText(env.TELEGRAM_SUPPORT_CHAT_ID, messageCopyId, `${ctx.message.caption} \n #${ctx.senderChat?.id}`)
-    }
-    
-  } 
+  try {
+    if (isMessageInBotChat) {
+      // Telegram not allow to edit others messages
+      // So how we can add text message in that case - create copy and then edit it
+      const { message_id: messageCopyId } = await ctx.copyMessage(env.TELEGRAM_SUPPORT_CHAT_ID);
+  
+      /* Add id and name as hashtag */
+  
+      // Simple message
+      if (ctx.message.text) {
+        ctx.api.editMessageText(env.TELEGRAM_SUPPORT_CHAT_ID, messageCopyId, `${ctx.message.text} \n #${ctx.senderChat?.id}`)
+      }
+  
+      // Message with attachment
+      else if (ctx.message.caption) {
+        ctx.api.editMessageText(env.TELEGRAM_SUPPORT_CHAT_ID, messageCopyId, `${ctx.message.caption} \n #${ctx.senderChat?.id}`)
+      }
+      
+    } 
+  } catch(e) {
+    console.error(e)
+  }
 
   // else if (isMessageInSupportChat) {
   //   // Read id from hash tag
