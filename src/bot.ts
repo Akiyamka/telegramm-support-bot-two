@@ -18,8 +18,7 @@ commands.forEach(({ commandName, handlerName }) => {
 
 // Handle other messages
 bot.on('message', async (ctx) => {
-  const isMessageInBotChat = String(ctx.chat?.id) === env.TELEGRAM_SUPPORT_CHAT_ID;
-  console.log('isMessageInBotChat', isMessageInBotChat)
+  const isMessageInBotChat = String(ctx.chat?.id) !== env.TELEGRAM_SUPPORT_CHAT_ID;
   try {
     if (isMessageInBotChat) {
       // Telegram not allow to edit others messages
