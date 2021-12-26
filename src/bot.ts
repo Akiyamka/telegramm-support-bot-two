@@ -34,7 +34,7 @@ bot.on('message', async (ctx) => {
   
       // Message with attachment
       else if (ctx.message.caption) {
-        ctx.api.editMessageText(env.TELEGRAM_SUPPORT_CHAT_ID, messageCopyId, `${ctx.message.caption} \n #${ctx.from.id}`)
+        ctx.api.editMessageText(env.TELEGRAM_SUPPORT_CHAT_ID, messageCopyId, `${ctx.message.caption} \n \n #ID_${ctx.from.id}`)
       }
       
     } 
