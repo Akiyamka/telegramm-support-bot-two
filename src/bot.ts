@@ -19,12 +19,13 @@ commands.forEach(({ commandName, handlerName }) => {
 // Handle other messages
 bot.on('message', async (ctx) => {
   const isMessageInBotChat = String(ctx.chat?.id) === env.TELEGRAM_SUPPORT_CHAT_ID;
+  console.log('isMessageInBotChat', isMessageInBotChat)
   try {
     if (isMessageInBotChat) {
       // Telegram not allow to edit others messages
       // So how we can add text message in that case - create copy and then edit it
       const { message_id: messageCopyId } = await ctx.copyMessage(env.TELEGRAM_SUPPORT_CHAT_ID);
-  
+      console.log('message Copied')
       /* Add id and name as hashtag */
   
       // Simple message

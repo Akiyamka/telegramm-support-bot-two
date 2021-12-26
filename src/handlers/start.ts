@@ -12,7 +12,7 @@ export function start(ctx: Context, config: Env) {
     const senderName = `${sender.username} ${sender.first_name} ${sender.last_name}`;
     ctx.api.sendMessage(
       config.TELEGRAM_SUPPORT_CHAT_ID,
-      `${senderType} ${senderName} присоединился к чату /nid: ${sender.id}`
+      `${senderType} ${senderName} присоединился к чату \nid: ${sender.id}`
     );
   } else {
     ctx.api.sendMessage(
