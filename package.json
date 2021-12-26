@@ -30,7 +30,7 @@
     "start": "node build/webhook.js",
     "build": "node ./build.js",
     "typecheck": "tsc --watch --noEmit",
-    "logs": "heroku logs -a telegramm-support-bot-two -n 200"
+    "logs": "heroku logs -a telegramm-support-bot-two --tail"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
