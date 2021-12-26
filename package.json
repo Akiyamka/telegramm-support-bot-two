@@ -5,7 +5,7 @@
   "main": "./build/webhook.js",
   "engines": {
     "node": ">=17.3.0",
-    "npm": ">= 7.19.1"
+    "npm": ">= 8.3.0"
   },
   "author": {
     "name": "errorinsystem@protonmail.com"
@@ -28,9 +28,8 @@
   "typings": "./lib/index.d.ts",
   "scripts": {
     "start": "node build/webhook.js",
-    "bundle": "node ./build.js",
-    "build": "tsc",
-    "dev": "tsc --watch --noEmit",
+    "build": "node ./build.js",
+    "typecheck": "tsc --watch --noEmit",
     "logs": "heroku logs -a telegramm-support-bot-two -n 200"
   },
   "devDependencies": {
