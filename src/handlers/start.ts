@@ -1,7 +1,7 @@
 import { Context } from 'grammy';
-import commands from 'src/commands';
-import env from 'src/env';
-import { Env } from 'src/types';
+import commands from '../commands';
+import env from '../env';
+import { Env } from '../types';
 
 export function start(ctx: Context, config: Env) {
   const commandsList = commands.map((command) => `/${command.commandName}: ${command.description}`).join('/n');

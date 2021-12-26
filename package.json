@@ -4,7 +4,7 @@
   "description": "Super simple bot for feedback",
   "main": "./build/webhook.js",
   "engines": {
-    "node": ">=16.4.1",
+    "node": ">=17.3.0",
     "npm": ">= 7.19.1"
   },
   "author": {
@@ -27,13 +27,13 @@
   ],
   "typings": "./lib/index.d.ts",
   "scripts": {
+    "start": "node build/webhook.js",
     "bundle": "node ./build.js",
     "build": "tsc",
     "dev": "tsc --watch --noEmit",
     "logs": "heroku logs -a telegramm-support-bot-two -n 200"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^1.0.2",
     "@types/express": "^4.17.13",
     "@types/node": "^16.11.7"
   }
