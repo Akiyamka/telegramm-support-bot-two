@@ -6,23 +6,22 @@ var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
 var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[Object.keys(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 var __export = (target, all) => {
-  __markAsModule(target);
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __reExport = (target, module2, desc) => {
+var __reExport = (target, module2, copyDefault, desc) => {
   if (module2 && typeof module2 === "object" || typeof module2 === "function") {
     for (let key of __getOwnPropNames(module2))
-      if (!__hasOwnProp.call(target, key) && key !== "default")
+      if (!__hasOwnProp.call(target, key) && (copyDefault || key !== "default"))
         __defProp(target, key, { get: () => module2[key], enumerable: !(desc = __getOwnPropDesc(module2, key)) || desc.enumerable });
   }
   return target;
 };
-var __toModule = (module2) => {
-  return __reExport(__markAsModule(__defProp(module2 != null ? __create(__getProtoOf(module2)) : {}, "default", module2 && module2.__esModule && "default" in module2 ? { get: () => module2.default, enumerable: true } : { value: module2, enumerable: true })), module2);
+var __toESM = (module2, isNodeMode) => {
+  return __reExport(__markAsModule(__defProp(module2 != null ? __create(__getProtoOf(module2)) : {}, "default", !isNodeMode && module2 && module2.__esModule ? { get: () => module2.default, enumerable: true } : { value: module2, enumerable: true })), module2);
 };
 
 // node_modules/depd/lib/compat/callsite-tostring.js
@@ -21796,7 +21795,7 @@ var require_filter = __commonJS({
       for (const [l1, l2, l3] of paths) {
         const subtree = (_a = tree[l1]) !== null && _a !== void 0 ? _a : tree[l1] = {};
         if (l2 !== void 0) {
-          const set = (_b = subtree[l2]) !== null && _b !== void 0 ? _b : subtree[l2] = new Set();
+          const set = (_b = subtree[l2]) !== null && _b !== void 0 ? _b : subtree[l2] = /* @__PURE__ */ new Set();
           if (l3 !== void 0)
             set.add(l3);
         }
@@ -22055,8 +22054,8 @@ var require_composer = __commonJS({
         }, ...middleware);
       }
       command(command, ...middleware) {
-        const atCommands = new Set();
-        const noAtCommands = new Set();
+        const atCommands = /* @__PURE__ */ new Set();
+        const noAtCommands = /* @__PURE__ */ new Set();
         toArray(command).forEach((cmd) => {
           if (cmd.startsWith("/")) {
             throw new Error(`Do not include '/' when registering command handlers (use '${cmd.substr(0, 1)}' not '${cmd}')`);
@@ -23504,8 +23503,8 @@ var require_event_target_shim = __commonJS({
   "node_modules/event-target-shim/dist/event-target-shim.js"(exports2, module2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
-    var privateData = new WeakMap();
-    var wrappers = new WeakMap();
+    var privateData = /* @__PURE__ */ new WeakMap();
+    var wrappers = /* @__PURE__ */ new WeakMap();
     function pd(event) {
       const retv = privateData.get(event);
       console.assert(retv != null, "'this' is expected an Event object, but got", event);
@@ -23718,7 +23717,7 @@ var require_event_target_shim = __commonJS({
     function setPassiveListener(event, passiveListener) {
       pd(event).passiveListener = passiveListener;
     }
-    var listenersMap = new WeakMap();
+    var listenersMap = /* @__PURE__ */ new WeakMap();
     var CAPTURE = 1;
     var BUBBLE = 2;
     var ATTRIBUTE = 3;
@@ -23806,7 +23805,7 @@ var require_event_target_shim = __commonJS({
     }
     function EventTarget() {
       if (this instanceof EventTarget) {
-        listenersMap.set(this, new Map());
+        listenersMap.set(this, /* @__PURE__ */ new Map());
         return;
       }
       if (arguments.length === 1 && Array.isArray(arguments[0])) {
@@ -23976,7 +23975,7 @@ var require_abort_controller = __commonJS({
       abortedFlags.set(signal, true);
       signal.dispatchEvent({ type: "abort" });
     }
-    var abortedFlags = new WeakMap();
+    var abortedFlags = /* @__PURE__ */ new WeakMap();
     Object.defineProperties(AbortSignal.prototype, {
       aborted: { enumerable: true }
     });
@@ -23997,7 +23996,7 @@ var require_abort_controller = __commonJS({
         abortSignal(getSignal(this));
       }
     };
-    var signals = new WeakMap();
+    var signals = /* @__PURE__ */ new WeakMap();
     function getSignal(controller) {
       const signal = signals.get(controller);
       if (signal == null) {
@@ -24470,11 +24469,11 @@ var require_url_state_machine = __commonJS({
     function isC0ControlPercentEncode(c) {
       return c <= 31 || c > 126;
     }
-    var extraPathPercentEncodeSet = new Set([32, 34, 35, 60, 62, 63, 96, 123, 125]);
+    var extraPathPercentEncodeSet = /* @__PURE__ */ new Set([32, 34, 35, 60, 62, 63, 96, 123, 125]);
     function isPathPercentEncode(c) {
       return isC0ControlPercentEncode(c) || extraPathPercentEncodeSet.has(c);
     }
-    var extraUserinfoPercentEncodeSet = new Set([47, 58, 59, 61, 64, 91, 92, 93, 94, 124]);
+    var extraUserinfoPercentEncodeSet = /* @__PURE__ */ new Set([47, 58, 59, 61, 64, 91, 92, 93, 94, 124]);
     function isUserinfoPercentEncode(c) {
       return isPathPercentEncode(c) || extraUserinfoPercentEncodeSet.has(c);
     }
@@ -25118,7 +25117,7 @@ var require_url_state_machine = __commonJS({
       }
       return true;
     };
-    var fileOtherwiseCodePoints = new Set([47, 92, 63, 35]);
+    var fileOtherwiseCodePoints = /* @__PURE__ */ new Set([47, 92, 63, 35]);
     URLStateMachine.prototype["parse file"] = function parseFile(c) {
       this.url.scheme = "file";
       if (c === 47 || c === 92) {
@@ -27857,7 +27856,7 @@ var require_session = __commonJS({
           enumerable: true,
           configurable: true,
           writable: true,
-          value: new Map()
+          value: /* @__PURE__ */ new Map()
         });
       }
       read(key) {
@@ -28065,17 +28064,17 @@ var require_mod = __commonJS({
 });
 
 // src/webhook.ts
-var import_express = __toModule(require_express2());
-var import_grammy2 = __toModule(require_mod());
+var import_express = __toESM(require_express2(), 1);
+var import_grammy2 = __toESM(require_mod(), 1);
 
 // src/bot.ts
-var import_grammy = __toModule(require_mod());
+var import_grammy = __toESM(require_mod(), 1);
 
 // src/env.ts
 var env = {
-  BOT_AUTH_TOKEN: "TOKEN_HERE",
-  GREETING_MESSAGE: "Welcome",
-  TELEGRAM_SUPPORT_CHAT_ID: "ID_HERE"
+  BOT_AUTH_TOKEN: process.env.BOT_AUTH_TOKEN,
+  GREETING_MESSAGE: process.env.GREETING_MESSAGE,
+  TELEGRAM_SUPPORT_CHAT_ID: process.env.TELEGRAM_SUPPORT_CHAT_ID
 };
 var env_default = env;
 

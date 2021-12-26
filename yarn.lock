@@ -23,6 +23,11 @@
     "chalk" "^2.0.0"
     "js-tokens" "^4.0.0"
 
+"@chialab/esbuild-plugin-env@^0.12.33":
+  "integrity" "sha512-iFbg5p/FoaV6PuReRgW321nrTcKSQWTvINVC4lSmLPZcF7oAQ488rWZ4+Fm8YFBT5R5kgwju5CHXV5L4lDZecQ=="
+  "resolved" "https://registry.npmjs.org/@chialab/esbuild-plugin-env/-/esbuild-plugin-env-0.12.33.tgz"
+  "version" "0.12.33"
+
 "@grammyjs/types@^2.3.1":
   "integrity" "sha512-dssC2bf2WgwVAf6UOhv54cPDisnhQRGtk94I7l6JPSfD44IB1rzFEm+CrS2omVbNWU9SZkID0E8C83WEwD0cew=="
   "resolved" "https://registry.npmjs.org/@grammyjs/types/-/types-2.3.1.tgz"
@@ -260,33 +265,34 @@
   "resolved" "https://registry.npmjs.org/encodeurl/-/encodeurl-1.0.2.tgz"
   "version" "1.0.2"
 
-"esbuild-linux-64@0.13.15":
-  "integrity" "sha512-eCKzkNSLywNeQTRBxJRQ0jxRCl2YWdMB3+PkWFo2BBQYC5mISLIVIjThNtn6HUNqua1pnvgP5xX0nHbZbPj5oA=="
-  "resolved" "https://registry.npmjs.org/esbuild-linux-64/-/esbuild-linux-64-0.13.15.tgz"
-  "version" "0.13.15"
+"esbuild-linux-64@0.14.8":
+  "integrity" "sha512-+RNuLk9RhRDL2kG+KTEYl5cIgF6AGLkRnKKWEu9DpCZaickONEqrKyQSVn410Hj105DLdW6qvIXQQHPycJhExg=="
+  "resolved" "https://registry.npmjs.org/esbuild-linux-64/-/esbuild-linux-64-0.14.8.tgz"
+  "version" "0.14.8"
 
-"esbuild@^0.13.15":
-  "integrity" "sha512-raCxt02HBKv8RJxE8vkTSCXGIyKHdEdGfUmiYb8wnabnaEmHzyW7DCHb5tEN0xU8ryqg5xw54mcwnYkC4x3AIw=="
-  "resolved" "https://registry.npmjs.org/esbuild/-/esbuild-0.13.15.tgz"
-  "version" "0.13.15"
+"esbuild@^0.14.8":
+  "integrity" "sha512-stMsCBmxwaMpeK8GC/49L/cRGIwsHwoEN7Twk5zDTHlm/63c0KXFKzDC8iM2Mi3fyCKwS002TAH6IlAvqR6t3g=="
+  "resolved" "https://registry.npmjs.org/esbuild/-/esbuild-0.14.8.tgz"
+  "version" "0.14.8"
   optionalDependencies:
-    "esbuild-android-arm64" "0.13.15"
-    "esbuild-darwin-64" "0.13.15"
-    "esbuild-darwin-arm64" "0.13.15"
-    "esbuild-freebsd-64" "0.13.15"
-    "esbuild-freebsd-arm64" "0.13.15"
-    "esbuild-linux-32" "0.13.15"
-    "esbuild-linux-64" "0.13.15"
-    "esbuild-linux-arm" "0.13.15"
-    "esbuild-linux-arm64" "0.13.15"
-    "esbuild-linux-mips64le" "0.13.15"
-    "esbuild-linux-ppc64le" "0.13.15"
-    "esbuild-netbsd-64" "0.13.15"
-    "esbuild-openbsd-64" "0.13.15"
-    "esbuild-sunos-64" "0.13.15"
-    "esbuild-windows-32" "0.13.15"
-    "esbuild-windows-64" "0.13.15"
-    "esbuild-windows-arm64" "0.13.15"
+    "esbuild-android-arm64" "0.14.8"
+    "esbuild-darwin-64" "0.14.8"
+    "esbuild-darwin-arm64" "0.14.8"
+    "esbuild-freebsd-64" "0.14.8"
+    "esbuild-freebsd-arm64" "0.14.8"
+    "esbuild-linux-32" "0.14.8"
+    "esbuild-linux-64" "0.14.8"
+    "esbuild-linux-arm" "0.14.8"
+    "esbuild-linux-arm64" "0.14.8"
+    "esbuild-linux-mips64le" "0.14.8"
+    "esbuild-linux-ppc64le" "0.14.8"
+    "esbuild-linux-s390x" "0.14.8"
+    "esbuild-netbsd-64" "0.14.8"
+    "esbuild-openbsd-64" "0.14.8"
+    "esbuild-sunos-64" "0.14.8"
+    "esbuild-windows-32" "0.14.8"
+    "esbuild-windows-64" "0.14.8"
+    "esbuild-windows-arm64" "0.14.8"
 
 "escape-html@~1.0.3":
   "integrity" "sha1-Aljq5NPQwJdN4cFpGI7wBR0dGYg="
