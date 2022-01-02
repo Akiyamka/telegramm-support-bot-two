@@ -23,7 +23,7 @@ bot.on('message', async (ctx) => {
   const withHeader = (message: string) => `${ctx.from.first_name}:\n` + message;
   const withFooter = (message: string) => message + `\n---\n#ID${ctx.from.id}X`;
   const formatMessage = (message: string) => withHeader(withFooter(message));
-  const extractUserId = (message: string) => message.match(/#_ID.+X/);
+  const extractUserId = (message: string) => message.match(/#_ID.+X/gm);
   try {
     console.log('isMessageInSupportChat', isMessageInSupportChat);
 
