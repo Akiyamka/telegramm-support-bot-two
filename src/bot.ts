@@ -11,7 +11,7 @@ commands.forEach(({ commandName, handlerName }) => {
     const handler = handlers[handlerName];
     if (handler === undefined) throw new Error(`Handler for command '${commandName}' not exist`);
     bot.command(commandName, (ctx) => handler(ctx, env));
-  } catch(e) {
+  } catch (e) {
     console.error(e);
   }
 });
@@ -25,40 +25,39 @@ bot.on('message', async (ctx) => {
   const formatMessage = (message: string) => withHeader(withFooter(message));
   const extractUserId = (message: string) => message.match(/#_ID.+X/);
   try {
-  console.log('isMessageInSupportChat', isMessageInSupportChat )
+    console.log('isMessageInSupportChat', isMessageInSupportChat);
 
     if (isMessageInBotChat) {
       // Telegram not allow to edit others messages
       // So how we can add text message in that case - create copy and then edit it
       const { message_id: messageCopyId } = await ctx.copyMessage(env.TELEGRAM_SUPPORT_CHAT_ID);
       /* Add id and name as hashtag */
-  
+
       // Simple message
       if (ctx.message.text) {
-        ctx.api.editMessageText(env.TELEGRAM_SUPPORT_CHAT_ID, messageCopyId, formatMessage(ctx.message.text))
+        ctx.api.editMessageText(env.TELEGRAM_SUPPORT_CHAT_ID, messageCopyId, formatMessage(ctx.message.text));
       }
-  
+
       // Message with attachment
       else if (ctx.message.caption) {
-        ctx.api.editMessageText(env.TELEGRAM_SUPPORT_CHAT_ID, messageCopyId, formatMessage(ctx.message.caption))
+        ctx.api.editMessageText(env.TELEGRAM_SUPPORT_CHAT_ID, messageCopyId, formatMessage(ctx.message.caption));
       }
-      
-    }  else if (isMessageInSupportChat) {
+    } else if (isMessageInSupportChat) {
       // Read id from hash tag
-      console.log('ctx.message.text', (ctx.message.text || ctx.message.caption) ?? '')
+      console.log('=>', ctx.message.reply_to_message?.text, ctx.message.text, ctx.message.caption);
 
-      const userId = extractUserId((ctx.message.reply_to_message?.text || ctx.message.text || ctx.message.caption) ?? '');
+      const userId = extractUserId(
+        (ctx.message.reply_to_message?.text || ctx.message.text || ctx.message.caption) ?? ''
+      );
+      console.log('🚀 ~ file: bot.ts ~ line 49 ~ bot.on ~ userId', userId);
       if (userId) {
-        console.log("🚀 ~ file: bot.ts ~ line 49 ~ bot.on ~ userId", userId)
         // Copy and send message to user with this id
-        ctx.copyMessage(userId[0])
+        ctx.copyMessage(userId[0]);
       }
     }
-  } catch(e) {
-    console.error(e)
+  } catch (e) {
+    console.error(e);
   }
-
-
 });
 
 bot.start();
