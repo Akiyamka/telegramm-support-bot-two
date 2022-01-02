@@ -57,7 +57,7 @@ bot.on('message', async (ctx) => {
       console.log('🚀 ~ file: bot.ts ~ line 49 ~ bot.on ~ userId', userId);
       if (userId) {
         // Copy and send message to user with this id
-        ctx.copyMessage(userId[0]);
+        ctx.copyMessage(userId);
       }
     }
   } catch (e) {
