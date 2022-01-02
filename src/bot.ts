@@ -21,7 +21,7 @@ bot.on('message', async (ctx) => {
   const isMessageInBotChat = String(ctx.chat?.id) !== env.TELEGRAM_SUPPORT_CHAT_ID;
   const isMessageInSupportChat = String(ctx.chat?.id) === env.TELEGRAM_SUPPORT_CHAT_ID;
   const withHeader = (message: string) => `${ctx.from.first_name}:\n` + message;
-  const withFooter = (message: string) => message + `\n---\n#ID${ctx.from.id}X`;
+  const withFooter = (message: string) => message + `\n\n---\n#ID${ctx.from.id}X`;
   const formatMessage = (message: string) => withHeader(withFooter(message));
   const extractUserId = (message: string) => {
     const matches = message.match(/#ID.+X/gm);
@@ -52,6 +52,7 @@ bot.on('message', async (ctx) => {
       console.log('=>', ctx.message.reply_to_message?.text, ctx.message.text, ctx.message.caption);
 
       const userId = extractUserId(
+        // ctx.message.entities?.filter
         (ctx.message.reply_to_message?.text || ctx.message.text || ctx.message.caption) ?? ''
       );
       console.log('🚀 ~ file: bot.ts ~ line 49 ~ bot.on ~ userId', userId);
