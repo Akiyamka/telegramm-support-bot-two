@@ -20,12 +20,13 @@ commands.forEach(({ commandName, handlerName }) => {
 bot.on('message', async (ctx) => {
   const isMessageInBotChat = String(ctx.chat?.id) !== env.TELEGRAM_SUPPORT_CHAT_ID;
   const isMessageInSupportChat = String(ctx.chat?.id) === env.TELEGRAM_SUPPORT_CHAT_ID;
-
   const withHeader = (message: string) => `${ctx.from.first_name}:\n` + message;
   const withFooter = (message: string) => message + `\n---\n#ID${ctx.from.id}X`;
   const formatMessage = (message: string) => withHeader(withFooter(message));
-  const extractUserId = (message: string) => message.match(/#_ID*.X/);
+  const extractUserId = (message: string) => message.match(/#_ID.+X/);
   try {
+  console.log('isMessageInSupportChat', isMessageInSupportChat )
+
     if (isMessageInBotChat) {
       // Telegram not allow to edit others messages
       // So how we can add text message in that case - create copy and then edit it
@@ -44,7 +45,9 @@ bot.on('message', async (ctx) => {
       
     }  else if (isMessageInSupportChat) {
       // Read id from hash tag
-      const userId = extractUserId((ctx.message.text || ctx.message.caption) ?? '');
+      console.log('ctx.message.text', (ctx.message.text || ctx.message.caption) ?? '')
+
+      const userId = extractUserId((ctx.message.reply_to_message?.text || ctx.message.text || ctx.message.caption) ?? '');
       if (userId) {
         console.log("🚀 ~ file: bot.ts ~ line 49 ~ bot.on ~ userId", userId)
         // Copy and send message to user with this id
